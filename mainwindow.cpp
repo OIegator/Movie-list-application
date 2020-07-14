@@ -20,11 +20,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     myTableModel *myModel = new myTableModel();
     myModel->populateData(list);
+    connect(ui->pushButton,SIGNAL(released()),this,SLOT(ab_pressed()));
     ui->tableView->setModel(myModel);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::ab_pressed(){
+    ui->pushButton->setText("Нажата");
+}
+void MainWindow::del_pressed(){
+    ui->pushButton->setText("Нажата");
+}
+void MainWindow::fb_pressed(){
+    ui->pushButton->setText("Нажата");
 }
 

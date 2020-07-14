@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "mytablemodel.h"
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,8 +18,14 @@ public:
     ~MainWindow();
 
 private slots:
+    void ab_pressed();
+    void fb_pressed();
+    void del_pressed();
 
 private:
     Ui::MainWindow *ui;
+    QPushButton app_button;
+    QPushButton fil_button;
+    QPushButton del_button;
 };
 #endif // MAINWINDOW_H
