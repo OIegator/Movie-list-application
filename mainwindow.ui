@@ -143,8 +143,8 @@ border: 2px solid rgb(47, 47, 47);
 QHeaderView::section:horizontal {
     color: #fff;
     border-style: solid;
-    background-color: qlineargradient( x1: 0, y1: 0, x2: 0, y2: 1,
-                                        stop: 0 rgb(90, 90, 90) stop: 1  rgb(35, 35, 35));
+    background-color:  qlineargradient( x1: 0, y1: 0, x2: 0, y2: 1,
+                                       stop: 0 rgb(90, 90, 90) stop: 1  rgb(35, 35, 35));
  }
 
 QHeaderView::section:vertical {
@@ -391,11 +391,18 @@ image: url(F:/Ot Projects/testingUI/buttons/delete.png);
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar">
+   <property name="font">
+    <font>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:rgb(25, 25, 25)</string>
+    <string notr="true">background-color:rgb(25, 25, 25);
+color: rgb(255, 255, 255);</string>
    </property>
   </widget>
  </widget>
