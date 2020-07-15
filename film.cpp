@@ -4,10 +4,10 @@ Film::Film()
 {
     name="";
     director="";
-    budget=0;
+    budget="";
 }
 
-Film::Film(QString name,QString director,int budget){
+Film::Film(QString name,QString director,QString budget){
     this->name=name;
     this->director=director;
     this->budget=budget;

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "mytablemodel.h"
 #include <QPushButton>
+#include <QLineEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,5 +28,6 @@ private:
     QPushButton app_button;
     QPushButton fil_button;
     QPushButton del_button;
+    QList<Film> films;
 };
 #endif // MAINWINDOW_H

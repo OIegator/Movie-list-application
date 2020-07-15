@@ -8,9 +8,9 @@ class Film
 
 public:
     QString name,director;
-    int budget;
+    QString budget;
     Film();
-    Film(QString name,QString director,int budget);
+    Film(QString name,QString director,QString budget);
 
     void setName(QString name);
     void setDir(QString director);
@@ -18,7 +18,7 @@ public:
 
     QString getName() const {return name;}
     QString getDir() const {return director;}
-    int getBud()const {return budget;}
+    QString getBud()const {return budget;}
 };
 
 #endif // FILM_H
