@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QList>
 #include "film.h"
+#include <string>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -55,10 +56,11 @@ void MainWindow::del_pressed() {
         ui->statusbar->showMessage("Выберите строки для их удаления!");
         return;
     }
-    foreach (const QModelIndex &index, indexes) {
-        ui->tableView->hideRow(index.row());
-        ui->statusbar->showMessage("Запись удалена.");
-    }
+
+    films.removeAt(selectModel->currentIndex().row());
+    myTableModel *myModel = new myTableModel();
+    myModel->populateData(films);
+    ui->tableView->setModel(myModel);
 }
 void MainWindow::fb_pressed(){
     ui->statusbar->showMessage("Нажата");
