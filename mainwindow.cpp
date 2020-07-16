@@ -3,6 +3,7 @@
 #include <QList>
 #include "film.h"
 #include <string>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -72,6 +73,51 @@ void MainWindow::fb_pressed() {
     if (!fileIn.open(QIODevice::ReadOnly)) {
       qWarning("Cannot open file for reading"); // если файл не найден, то выводим предупреждение и завершаем выполнение программы
     }
+    QTextStream fin(&fileIn);
+
+    // Вначале посчитаем сколько чисел в файле
+    int count = 0; // число чисел в файле
+    int temp; // Временная переменная
+     QString symbol;
+
+    while (!fin.atEnd()) {
+        fin >> temp; // в пустоту считываем из файла числа
+        symbol = fin.read(1);
+        if (symbol == '\n')
+            count++; // увеличиваем счетчик строк
+    }
+
+    fileIn.close(); // Закрываем файл для повторного чтения
+
+    QTextStream finSec(&fileIn);
+    for (int i=0;i<count;i++){
+        QString s,s1,s2;
+        symbol = finSec.read(1);
+        while(symbol != ' '){
+            s=s+symbol;
+            symbol = finSec.read(1);
+        }
+        symbol = finSec.read(1);
+        while(symbol != ' '){
+            s1=s1+symbol;
+            symbol = finSec.read(1);
+        }
+        symbol = finSec.read(1);
+        while(symbol != '\n'){
+            s2=s2+symbol;
+            symbol = finSec.read(1);
+        }
+        Film f(s,s1,s2);
+        films.append(f);
+    }
+    Film f("dwd","wdwdw","dwdw");
+    films.append(f);
+    myTableModel *myModel = new myTableModel();
+    myModel->populateData(films);
+    ui->tableView->setModel(myModel);
+    QTextStream finThd(&fileIn); // Сформировали последний поток по файли
+
+
     ui->statusbar->showMessage("Нажата");
 }
 
