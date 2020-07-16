@@ -10,16 +10,29 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
-    QList<Film> list;
-    Film f("Dunkirk","Nolan","40");
-    Film f2("Momento","Nolan","40");
-    Film f3("Dark knight","Nolan","40");
-    Film f4("Prestige","Nolan","40");
-    films.append(f);
-    films.append(f2);
-    films.append(f3);
-    films.append(f4);
+    QFile fileIn;
+    QString name;
+    QString bud;
+    QString dir;
+    QString input = QFileDialog::getOpenFileName(
+                this,
+                QObject::tr("Select the file to open:"));
 
+    fileIn.setFileName(input);
+    if (fileIn.open(QIODevice::ReadOnly)) {
+        QDataStream stream(&fileIn); // если файл не найден, то выводим предупреждение и завершаем выполнение программы
+        while (!stream.atEnd()) {
+           stream >> name >> bud >> dir;
+           Film f(name, dir, bud);
+           films.append(f);
+        }
+        if(stream.status() != QDataStream::Ok)
+        {
+            qDebug("Ошибка чтения файла");
+        }
+    fileIn.close();
+    }
+    QList<Film> list;
 
     myTableModel *myModel = new myTableModel();
     myModel->populateData(films);
@@ -69,8 +82,9 @@ void MainWindow::fb_pressed() {
                 QObject::tr("Select the file to open:"));
 
     fileIn.setFileName(input);
-    if (!fileIn.open(QIODevice::ReadOnly)) {
-      qWarning("Cannot open file for reading"); // если файл не найден, то выводим предупреждение и завершаем выполнение программы
+    if (fileIn.open(QIODevice::ReadWrite)) {
+      QDataStream stream(&fileIn); // если файл не найден, то выводим предупреждение и завершаем выполнение программы
+
     }
     ui->statusbar->showMessage("Нажата");
 }

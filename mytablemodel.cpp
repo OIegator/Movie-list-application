@@ -32,6 +32,15 @@ QVariant myTableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+void myTableModel::insertRow(Film movie, QFile file)
+{
+    QDataStream stream(&file);
+    stream << movie.getName() << movie.getBud() << movie.getDir();
+    if(stream.status() != QDataStream::Ok) {
+        qDebug("Ошибка записи");
+    }
+}
+
 void myTableModel::populateData(QList<Film> list){
     films=list;
 }

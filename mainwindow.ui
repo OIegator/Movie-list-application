@@ -124,8 +124,10 @@ border: 2px solid rgb(47, 47, 47);
       </property>
       <property name="font">
        <font>
-        <family>OCR A Extended</family>
+        <family>Calibri Light</family>
         <pointsize>-1</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="cursor" stdset="0">

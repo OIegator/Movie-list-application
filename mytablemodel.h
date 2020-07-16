@@ -3,6 +3,8 @@
 #include "film.h"
 
 #include <QAbstractTableModel>
+#include <QFile>
+#include <QFileDialog>
 
 class myTableModel : public QAbstractTableModel
 {
@@ -12,6 +14,8 @@ public:
     int rowCount(const QModelIndex &parent) const;
     int columnCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
+    void removeRow(int index);
+    void insertRow(Film movie, QFile file);
 private:
     QList<Film> films;
 };
