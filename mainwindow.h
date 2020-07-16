@@ -5,6 +5,8 @@
 #include "mytablemodel.h"
 #include <QPushButton>
 #include <QLineEdit>
+#include <QFile>
+#include <QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

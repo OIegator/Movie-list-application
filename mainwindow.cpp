@@ -62,7 +62,16 @@ void MainWindow::del_pressed() {
     myModel->populateData(films);
     ui->tableView->setModel(myModel);
 }
-void MainWindow::fb_pressed(){
+void MainWindow::fb_pressed() {
+    QFile fileIn;
+    QString input = QFileDialog::getOpenFileName(
+                this,
+                QObject::tr("Select the file to open:"));
+
+    fileIn.setFileName(input);
+    if (!fileIn.open(QIODevice::ReadOnly)) {
+      qWarning("Cannot open file for reading"); // если файл не найден, то выводим предупреждение и завершаем выполнение программы
+    }
     ui->statusbar->showMessage("Нажата");
 }
 
