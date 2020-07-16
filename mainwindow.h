@@ -31,5 +31,6 @@ private:
     QPushButton fil_button;
     QPushButton del_button;
     QList<Film> films;
+    myTableModel model;
 };
 #endif // MAINWINDOW_H

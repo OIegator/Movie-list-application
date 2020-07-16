@@ -32,6 +32,31 @@ QVariant myTableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+void myTableModel::insertRow(Film movie, QFile file)
+{
+    QDataStream stream(&file);
+    stream << movie.getName() << movie.getBud() << movie.getDir();
+    if(stream.status() != QDataStream::Ok) {
+        qDebug("Ошибка записи");
+    }
+}
+
 void myTableModel::populateData(QList<Film> list){
     films=list;
+}
+
+void myTableModel::appendRow(Film f){
+    Film a(f.name,f.budget,f.director);
+    films.append(f);
+}
+
+void myTableModel::removeRow(int index){
+    films.removeAt(index);
+}
+
+bool myTableModel::SetValue(int index,Film f){
+   if (index<0 && index>films.size())
+       return false;
+   films.replace(index,f);
+   return true;
 }

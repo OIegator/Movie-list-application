@@ -17,7 +17,7 @@ public:
     void removeRow(int index);
     void insertRow(Film movie, QFile file);
     void appendRow(Film f);
-    void SetValue(int index,Film f);
+    bool SetValue(int index,Film f);
     QList<Film> films;
 };
 
