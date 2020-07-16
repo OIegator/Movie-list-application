@@ -2,13 +2,13 @@
 
 Film::Film()
 {
-    name="";
-    director="";
-    budget="";
+    title = "";
+    director = "";
+    budget = "";
 }
 
-Film::Film(QString name,QString director,QString budget){
-    this->name=name;
-    this->director=director;
-    this->budget=budget;
+Film::Film(QString title,QString director,QString budget){
+    this->title = title;
+    this->director = director;
+    this->budget = budget;
 }

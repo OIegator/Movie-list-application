@@ -5,23 +5,16 @@
 class Film
 {
 
-
 public:
-    QString name,director;
+    QString title;
+    QString director;
     QString budget;
     Film();
-    Film(QString name,QString director,QString budget);
+    Film(QString title,QString director,QString budget);
 
-    void setName(QString name);
-    void setDir(QString director);
-    void setBud(int budget);
-    QString getName() { return name; };
-    QString getBud() { return budget; };
-    QString getDir() { return director; };
-
-    QString getName() const {return name;}
-    QString getDir() const {return director;}
-    QString getBud()const {return budget;}
+    QString getTitle() const { return title; }
+    QString getDir() const { return director; }
+    QString getBud()const { return budget; }
 };
 
 #endif // FILM_H
