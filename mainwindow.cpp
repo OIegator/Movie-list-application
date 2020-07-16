@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
         while (!stream.atEnd()) {
            stream >> name >> bud >> dir;
            Film f(name, dir, bud);
-           films.append(f);
+           model.films.append(f);
         }
         if(stream.status() != QDataStream::Ok)
         {
@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     QList<Film> list;
 
     myTableModel *myModel = new myTableModel();
-    myModel->populateData(films);
+    myModel->populateData(model.films);
     connect(ui->pushButton,SIGNAL(released()),this,SLOT(ab_pressed()));
     connect(ui->pushButton_2,SIGNAL(released()),this,SLOT(del_pressed()));
     connect(ui->pushButton_3,SIGNAL(released()),this,SLOT(fb_pressed()));
@@ -152,7 +152,7 @@ void MainWindow::fb_pressed() {
     ui->tableView->setModel(myModel);
     QTextStream finThd(&fileIn); // Сформировали последний поток по файли
 
-
+}
 
 }
 
