@@ -16,8 +16,12 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     void removeRow(int index);
     void insertRow(Film movie, QFile file);
+
     void appendRow(Film f);
     void SetValue(int index,Film f);
+
+private:
+
     QList<Film> films;
 };
 

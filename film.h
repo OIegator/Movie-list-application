@@ -15,6 +15,9 @@ public:
     void setName(QString name);
     void setDir(QString director);
     void setBud(int budget);
+    QString getName() { return name; };
+    QString getBud() { return budget; };
+    QString getDir() { return director; };
 
     QString getName() const {return name;}
     QString getDir() const {return director;}
