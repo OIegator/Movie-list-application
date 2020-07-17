@@ -9,6 +9,7 @@
 
 class myTableModel : public QAbstractTableModel
 {
+
 public:
     myTableModel();
     void populateData(QList<Film> list);

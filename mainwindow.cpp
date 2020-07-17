@@ -28,18 +28,21 @@ MainWindow::~MainWindow()
 void MainWindow::ab_pressed() {
     if(ui->lineEdit->text() == "" || ui->lineEdit_2->text() == "" || ui->lineEdit_3->text() == "") {
         ui->statusbar->showMessage("Ошибка. Все поля должны быть заполнены.");
-    } else { Film f(ui->lineEdit_2->text(), ui->lineEdit_3->text(), "$" + ui->lineEdit->text());
-    model.appendRow(f);
-    myTableModel *myModel = new myTableModel();
-    myModel->populateData(model.films);
-    ui->tableView->setModel(myModel);
-    ui->lineEdit->clear();
-    ui->lineEdit_2->clear();
-    ui->lineEdit_3->clear();
-    ui->statusbar->showMessage("Запись добавлена.");
+    } else {
+        Film f(ui->lineEdit_2->text(), ui->lineEdit_3->text(), "$" + ui->lineEdit->text());
+        model.appendRow(f);
+        myTableModel *myModel = new myTableModel();
+        myModel->populateData(model.films);
+        ui->tableView->setModel(myModel);
+        ui->lineEdit->clear();
+        ui->lineEdit_2->clear();
+        ui->lineEdit_3->clear();
+        ui->statusbar->showMessage("Запись добавлена.");
     }
 }
-void MainWindow::del_pressed() {
+
+void MainWindow::del_pressed()
+{
     QItemSelectionModel *selectModel = ui->tableView->selectionModel();
     QModelIndexList indexes = selectModel->selectedRows();
     if (indexes.isEmpty()) {
@@ -51,8 +54,11 @@ void MainWindow::del_pressed() {
     myTableModel *myModel = new myTableModel();
     myModel->populateData(model.films);
     ui->tableView->setModel(myModel);
+    ui->statusbar->showMessage("Запись удалена.");
 }
-void MainWindow::fb_pressed() {
+
+void MainWindow::fb_pressed()
+{
     QFile fileIn;
     QString title;
     QString bud;

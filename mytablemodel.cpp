@@ -8,13 +8,13 @@ myTableModel::myTableModel()
 int myTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return films.size(); // сделаем фиксированно 5 строк в таблице
-    //если вы станете использовать скажем QList, то пишите return list.size();
+    return films.size();
 }
+
 int myTableModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return 3; // количество колонок сделаем также фиксированным
+    return 3;
 }
 
 QVariant myTableModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -49,7 +49,6 @@ QVariant myTableModel::data(const QModelIndex &index, int role) const
         if (index.column()==2)
             return films.at(index.row()).director;
         QString unswer = QString("row = ") + QString::number(index.row()) + "  col = " + QString::number(index.column());
-        // строкой выше мы формируем ответ. QString::number преобразует число в текст
         return QVariant(unswer);
     }
     return QVariant();
@@ -64,20 +63,24 @@ void myTableModel::insertRow(Film movie, QFile file)
     }
 }
 
-void myTableModel::populateData(QList<Film> list){
-    films=list;
+void myTableModel::populateData(QList<Film> list)
+{
+    films = list;
 }
 
-void myTableModel::appendRow(Film f){
+void myTableModel::appendRow(Film f)
+{
     Film a(f.title,f.budget,f.director);
     films.append(f);
 }
 
-void myTableModel::removeRow(int index){
+void myTableModel::removeRow(int index)
+{
     films.removeAt(index);
 }
 
-bool myTableModel::setValue(int index,Film f){
+bool myTableModel::setValue(int index,Film f)
+{
    if (index<0 && index>films.size())
        return false;
    films.replace(index,f);
